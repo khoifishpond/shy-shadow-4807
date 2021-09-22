@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'plots index page' do
+describe 'garden show page' do
   before(:each) do
     @garden = Garden.create!(name: 'Does Not Work', organic: false)
     @plot1 = @garden.plots.create!(number: 11, size: 'Large', direction: 'East')
@@ -16,20 +16,10 @@ describe 'plots index page' do
     @plant7 = @plot4.plants.create!(name: 'Orange', description: 'ASDFASDFASDF', days_to_harvest: 30)
     @plant8 = @plot4.plants.create!(name: 'White', description: 'ASDFASDFASDF', days_to_harvest: 30)
     
-    visit plots_path
-  end
-  
-  it 'lists all plot numbers' do
-    expect(page).to have_content(@plot1.number)
-    expect(page).to have_content(@plot2.number)
-    expect(page).to have_content(@plot3.number)
-    expect(page).to have_content(@plot4.number)
+    visit garden_path(@garden)
   end
 
-  it 'has links to remove plant from plot' do
-    click_link "Remove #{@plant1.name}"
+  it 'lists all plants in garden' do
     
-    expect(current_path).to eq(plots_path)
-    expect(page).to_not have_content(@plant1.name)
   end
 end
