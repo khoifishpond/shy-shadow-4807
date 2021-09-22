@@ -10,7 +10,7 @@ describe 'garden show page' do
     @plant1 = @plot1.plants.create!(name: 'Red', description: 'ASDFASDFASDF', days_to_harvest: 30)
     @plant2 = @plot1.plants.create!(name: 'Blue', description: 'ASDFASDFASDF', days_to_harvest: 30)
     @plant3 = @plot2.plants.create!(name: 'Green', description: 'ASDFASDFASDF', days_to_harvest: 30)
-    @plant4 = @plot2.plants.create!(name: 'Purple', description: 'ASDFASDFASDF', days_to_harvest: 30)
+    @plant4 = @plot2.plants.create!(name: 'Red', description: 'ASDFASDFASDF', days_to_harvest: 30)
     @plant5 = @plot3.plants.create!(name: 'Yellow', description: 'ASDFASDFASDF', days_to_harvest: 30)
     @plant6 = @plot3.plants.create!(name: 'Black', description: 'ASDFASDFASDF', days_to_harvest: 30)
     @plant7 = @plot4.plants.create!(name: 'Orange', description: 'ASDFASDFASDF', days_to_harvest: 30)
@@ -20,6 +20,14 @@ describe 'garden show page' do
   end
 
   it 'lists all plants in garden' do
-    
+    save_and_open_page
+    expect(page).to have_content(@plant1.name)
+    expect(page).to have_content(@plant2.name)
+    expect(page).to have_content(@plant3.name)
+    expect(page).to have_content(@plant4.name)
+    expect(page).to have_content(@plant5.name)
+    expect(page).to have_content(@plant6.name)
+    expect(page).to have_content(@plant7.name)
+    expect(page).to have_content(@plant8.name)
   end
 end
